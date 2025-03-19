@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maddie's Crochet-Minis</title>
+    <style>
+        body {
+            font-family: "Times New Roman", serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-image: url('https://media.istockphoto.com/id/1366552397/vector/knitting-crochet-seamless-pattern-vector-background-with-doodle-illustration-cat-playing.jpg?s=612x612&w=0&k=20&c=VpesbJQRpS2jA316Kff590sG7HoaRCqRXVt8NBWQZe4=');
+			background-repeat: repeat-x;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #968ebd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .main-content {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr; /* Single column for mobile */
+        }
+
+        .hero {
+            background-image: url('https://t3.ftcdn.net/jpg/03/55/65/82/360_F_355658230_M0fBXe6qceuUZKiYzgqLC0k55g14iYBv.jpg');
+            background-size: cover;
+            background-position: center;
+            color: black; /* Adjust text color for visibility */
+            padding: 100px 20px; /* Increase padding for better visual */
+            text-align: center;
+            position: relative; /* Needed for overlay */
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .product {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: center;
+        }
+		
+		button {
+            background-color: #968ebd;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #645e82;
+        }
+
+        .product button {
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+
+        /* Hero button styling */
+        .hero button {
+            padding: 15px 30px;
+            font-size: 18px;
+        }
+
+        /* Checkout button styling */
+        .sidebar button {
+            width: 100%;
+            margin-top: 10px;
+            padding:12px;
+        }
+
+#checkout-form {
+            display: none; /* Initially hidden */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        #checkout-form input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+        }
+
+        #checkout-form button {
+            margin-top: 10px;
+        }
+
+        #overlay {
+            display: none; /* Initially hidden */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .about {
+            background-color: #f8f8f8;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .contact {
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer {
+            background-color: #e0e0e0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Responsive adjustments */
+        @media (min-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr 300px; /* Main content and sidebar on larger screens */
+            }
+            .sidebar {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Maddie's Crochet-Minis</h1>
+    </header>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#products">Products</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="main-content">
+        <section class="content">
+            <div class="hero" id="home">
+                <h1>Welcome to Our Crochet-Minis World!</h1>
+                <p>Handmade Crochet Keychains with love. To show off your favorite characters or animals.</p>
+                <button onclick="showAlert()">Shop Now!</button>
+            </div>
+
+		<div id="products">
+			<h2>Products:</h2>
+			<div class="products">
+                <div class="product">
+                    <img src="images/small.jpg" alt="Product 1" width="200">
+                    <h3>Small Keychains</h3>
+                    <p>₱50</p>
+                    <button onclick="addToCart('Small Keychains', 50)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/medium.jpg" alt="Product 2" width="200">
+                    <h3>Medium Keychains</h3>
+                    <p>₱80</p>
+                    <button onclick="addToCart('Medium Keychains', 80)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/big.jpg" alt="Product 3" width="200">
+                    <h3>Big Keychains</h3>
+                    <p>₱100</p>
+                    <button onclick="addToCart('Big Keychains', 100)">Add to Cart</button>
+                </div>
+			</div>
+			<h2>Seasonal Products:</h2>
+			<div class="products">
+				<div class="product">
+                    <img src="images/halloween.jpg" alt="Product 4" width="200">
+                    <h3>Halloween Season (2pcs. Halloween themed keychains)</h3>
+                    <p>₱300</p>
+                    <button onclick="addToCart('Halloween', 300)">Add to Cart</button>
+                </div>
+				<div class="product">
+                    <img src="https://lilyrosy.com/cdn/shop/files/IMG-2184.jpg?v=1699797108&width=360" alt="Product 5" width="200">
+                    <h3>Valentine Season (Crochet Flowers)</h3>
+                    <p>₱350</p>
+                    <button onclick="addToCart('Valentine', 350)">Add to Cart</button>
+                </div>
+				<div class="product">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQgMJW8REW7vRIgP_h-s3aYh0mJfiv2KUOf4w&s" alt="Product 6" width="200">
+                    <h3>Christmas Season (Crochet Ornaments)</h3>
+                    <p>₱300</p>
+                    <button onclick="addToCart('Christmas', 300)">Add to Cart</button>
+                </div>
+			</div>
+        </div>
+
+            <div class="about" id="about">
+                <h2>About Us</h2>
+                <p>We are a small business creating unique crochet keychains. Our passion is to bring warmth and style to your life through our handmade creations.</p>
+            </div>
+
+            <div class="contact" id="contact">
+                <h2>Contact Us</h2>
+                <p>Email: mads.li9ht17@gmail.com</p>
+                <p>Phone: +63 997 930 6539</p>
+            </div>
+        </section>
+        <aside class="sidebar">
+            <h3>Cart</h3>
+            <div id="cart-items">
+                <p>Your cart is empty.</p>
+            </div>
+            <p>Total: ₱<span id="cart-total">0</span></p>
+            <button onclick="showCheckoutForm()">Checkout</button>
+        </aside>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Maddie's Crochet-Minis</p>
+    </footer>
+	
+		<div id="checkout-form">
+				<h3>Checkout Details</h3>
+				<input type="text" id="name" placeholder="Name">
+				<input type="text" id="address" placeholder="Address">
+				<input type="text" id="request" placeholder="Request (Request a custom design)">
+				<button onclick="processCheckout()">Confirm Checkout</button>
+				<button onclick="hideCheckoutForm()">Cancel</button>
+			</div>
+
+    <div id="overlay"></div>
+    <script>
+        let cart = [];
+
+        function showAlert() {
+            alert("Welcome to our shop! Add to cart the products to start!");
+        }
+
+        function addToCart(itemName, price) {
+            cart.push({ name: itemName, price: price });
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItemsDiv = document.getElementById("cart-items");
+            const cartTotalSpan = document.getElementById("cart-total");
+            cartItemsDiv.innerHTML = "";
+            let total = 0;
+
+            if (cart.length === 0) {
+                cartItemsDiv.innerHTML = "<p>Your cart is empty.</p>";
+                cartTotalSpan.textContent = "0";
+                return;
+            }
+
+            cart.forEach(item => {
+                const itemDiv = document.createElement("div");
+                itemDiv.textContent = `${item.name} - ₱${item.price}`;
+                cartItemsDiv.appendChild(itemDiv);
+                total += item.price;
+            });
+
+            cartTotalSpan.textContent = total;
+        }
+
+        function showCheckoutForm() {
+            if (cart.length === 0) {
+                alert("Your cart is empty!");
+                return;
+            }
+            document.getElementById("checkout-form").style.display = "block";
+            document.getElementById("overlay").style.display = "block";
+        }
+
+        function hideCheckoutForm() {
+            document.getElementById("checkout-form").style.display = "none";
+            document.getElementById("overlay").style.display = "none";
+        }
+
+        function processCheckout() {
+            const name = document.getElementById("name").value;
+            const address = document.getElementById("address").value;
+			const request = document.getElementById("request").value;
+
+            if (!name || !address) {
+                alert("Please fill-up the form.");
+                return;
+            }
+
+            alert(`Checkout completed! Name: ${name}, Address: ${address}, Request: ${request} Total: $${document.getElementById("cart-total").textContent}`);
+            cart = [];
+            updateCart();
+            hideCheckoutForm();
+        }
+    </script>
+</body>
+</html>
